@@ -19,27 +19,25 @@ public class MainActivity extends AppCompatActivity {
     public void checkShape(View view) {
         EditText editText = findViewById(R.id.editText);
         int number;
-        String message;
-        try {
-            number = Integer.parseInt(editText.getText().toString());
-        }
-        catch (Exception e) {
+        String message = editText.getText().toString();
+        if (message.isEmpty()) {
             Toast.makeText(this, "Enter a valid integer!", Toast.LENGTH_SHORT).show();
             return;
         }
+        number = Integer.parseInt(message);
         Number myNumber = new Number();
         myNumber.number = number;
         if (myNumber.isTriangular() && myNumber.isSquare()) {
-            message = number + " is both square and triangular!";
+            message += " is both square and triangular!";
         }
         else if (myNumber.isSquare()) {
-            message = number + " is square, but not triangular.";
+            message += " is square, but not triangular.";
         }
         else if (myNumber.isTriangular()) {
-            message = number + " is triangular, but not square.";
+            message += " is triangular, but not square.";
         }
         else {
-            message = number + " is neither square nor triangular.";
+            message += " is neither square nor triangular.";
         }
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         editText.getText().clear();
